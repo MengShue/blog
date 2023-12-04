@@ -1,6 +1,11 @@
 class ArticlesController < ApplicationController
+
+  before_action :authenticate_user!, :except => [:index, :show]
+  # before_action :set_listing, only: [:edit, :update, :destroy]
+
   def index
     @articles = Article.all
+    # Article.paginate(:page => params[:page], per_page: 5).order('created_at DESC')
   end
 
   def show
@@ -44,6 +49,6 @@ class ArticlesController < ApplicationController
 
   private
     def article_params
-      params.require(:article).permit(:title, :body)
+      params.require(:article).permit(:title, :body, :status)
     end
 end
