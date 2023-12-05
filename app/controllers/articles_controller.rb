@@ -4,8 +4,9 @@ class ArticlesController < ApplicationController
   # before_action :set_listing, only: [:edit, :update, :destroy]
 
   def index
-    @articles = Article.all
+    @articles = Article.all.limit(20)
     # Article.paginate(:page => params[:page], per_page: 5).order('created_at DESC')
+    # @articles = Article.where(user: current_user.id).limit(20)
   end
 
   def show
@@ -18,6 +19,7 @@ class ArticlesController < ApplicationController
 
   def create
     @article = Article.new(article_params)
+    @article.user = current_user.id
 
     if @article.save
       redirect_to @article
@@ -33,6 +35,10 @@ class ArticlesController < ApplicationController
   def update
     @article = Article.find(params[:id])
 
+    logger.info "article #{@article.id} written by #{@article.user} updated by user #{current_user.id}"
+
+    return head :forbidden unless @article.user.to_i == current_user.id
+
     if @article.update(article_params)
       redirect_to @article
     else
@@ -42,6 +48,7 @@ class ArticlesController < ApplicationController
 
   def destroy
     @article = Article.find(params[:id])
+    return head :forbidden unless @article.user.to_i == current_user.id
     @article.destroy
 
     redirect_to root_path, status: :see_other
