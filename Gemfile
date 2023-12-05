@@ -66,3 +66,4 @@ group :test do
 end
 
 gem "devise", "~> 4.9"
+# gem 'error_highlight', '>= 0.5.1'

@@ -1,15 +1,17 @@
-<h1>Articles</h1>
+<div class="container my-5">
+  <h3>Articles</h3>
+  <hr class="col-1 my-4" />
+  Right now has <%= Article.public_count %> articles and still growing!
 
-Right now has <%= Article.public_count %> articles and still growing!
-
-<ul>
-  <% @articles.each do |article| %>
-    <% unless article.archived? %>
-      <li>
-        <%= link_to article.title, article %>
-      </li>
+  <ul>
+    <% @articles.each do |article| %>
+      <% unless article.archived? %>
+        <li>
+          <%= link_to article.title, article %>
+        </li>
+      <% end %>
     <% end %>
-  <% end %>
-</ul>
+  </ul>
 
-<%= link_to "New Article", new_article_path %>
+  <%= link_to "New Article", new_article_path %>
+</div>
