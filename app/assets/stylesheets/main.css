@@ -1,0 +1,13 @@
+
+
+#flashy {
+    background-color: blue;
+    transition: background-color 500ms linear;
+    animation: blinker 1s linear 3s;
+}
+  
+@keyframes blinker {
+    50% {
+      opacity: 0;
+    }
+}

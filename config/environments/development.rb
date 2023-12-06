@@ -77,6 +77,6 @@ Rails.application.configure do
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
 
   Rails.logger = Logger.new(STDOUT)
-  config.log_level = :warn # In any environment initializer, or
+  config.log_level = :info # In any environment initializer, or
   Rails.logger.level = 0 # at any time
 end
