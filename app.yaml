@@ -1,0 +1,9 @@
+entrypoint: ./bin/rails server
+env: flex
+runtime: ruby
+automatic_scaling:
+  min_num_instances: 2
+  max_num_instances: 5
+
+env_variables:
+  SECRET_KEY_BASE: [SECRET_KEY_BASE]
