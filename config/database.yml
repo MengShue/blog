@@ -49,7 +49,12 @@ test:
 # for a full overview on how database connection configuration can be specified.
 #
 production:
-  <<: *default
-  database: blog_production
-  username: blog
+  adapter: mysql2
+  pool: 5
+  timeout: 5000
+  username: "root"
   password: <%= ENV["BLOG_DATABASE_PASSWORD"] %>
+  socket:   "/cloudsql/prismatic-smoke-408205:us-central1:myrailsblog-db"
+  database: "blog_production"
+  # username: blog
+  # password: <%= ENV["BLOG_DATABASE_PASSWORD"] %>
